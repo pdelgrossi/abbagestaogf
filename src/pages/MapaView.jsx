@@ -1,3 +1,35 @@
+// STAND-BY: map view temporarily disabled to avoid geocoding API requests.
+// Full implementation preserved below (commented out). Re-enable by restoring the original export.
+
+import { MapPin } from 'lucide-react';
+
+export default function MapaView({ data }) {
+  return (
+    <div style={{
+      height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      flexDirection: 'column', gap: '16px',
+    }}>
+      <div style={{
+        width: '56px', height: '56px', borderRadius: '16px',
+        background: '#F2EEE9', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        <MapPin size={24} color="#C8C2BC" />
+      </div>
+      <div style={{ textAlign: 'center' }}>
+        <div style={{ fontSize: '16px', fontWeight: '700', color: '#1A1614', marginBottom: '4px' }}>
+          Mapa em breve
+        </div>
+        <div style={{ fontSize: '13px', color: '#A89E98', fontWeight: '500' }}>
+          Esta funcionalidade está temporariamente desativada.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/*
+// ── ORIGINAL IMPLEMENTATION ──────────────────────────────────────────────────
+
 import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -63,7 +95,6 @@ export default function MapaView({ data }) {
   const [activeRedes, setActiveRedes] = useState(() => new Set(REDES));
   const abortRef = useRef(false);
 
-  // ── Init Leaflet map once ──────────────────────────────────────────────────
   useEffect(() => {
     if (!mapDivRef.current || mapRef.current) return;
 
@@ -82,7 +113,6 @@ export default function MapaView({ data }) {
     };
   }, []);
 
-  // ── Geocoding ──────────────────────────────────────────────────────────────
   useEffect(() => {
     abortRef.current = false;
 
@@ -123,7 +153,6 @@ export default function MapaView({ data }) {
     return () => { abortRef.current = true; };
   }, []);
 
-  // ── Sync markers with coords + activeRedes + colors ────────────────────────
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -166,7 +195,6 @@ export default function MapaView({ data }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '14px' }}>
-      {/* Header */}
       <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
           <h2 style={{ fontSize: '20px', fontWeight: '800', color: '#1A1614', margin: 0, letterSpacing: '-0.4px' }}>
@@ -202,11 +230,9 @@ export default function MapaView({ data }) {
         )}
       </div>
 
-      {/* Map + overlay wrapper */}
       <div style={{ flex: 1, position: 'relative', borderRadius: '14px', overflow: 'hidden', border: '1px solid #E8E2DB', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
         <div ref={mapDivRef} style={{ width: '100%', height: '100%' }} />
 
-        {/* Rede filter overlay */}
         <div style={{
           position: 'absolute', top: '12px', right: '12px', zIndex: 1000,
           background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(8px)',
@@ -256,12 +282,13 @@ export default function MapaView({ data }) {
         </div>
       </div>
 
-      <style>{`
+      <style>{\`
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
         .leaflet-popup-content-wrapper { border-radius:10px!important; box-shadow:0 4px 20px rgba(0,0,0,0.12)!important; border:1px solid #E8E2DB!important; }
         .leaflet-popup-tip { background:#fff!important; }
         .leaflet-popup-content { margin:12px 14px!important; }
-      `}</style>
+      \`}</style>
     </div>
   );
 }
+*/
